@@ -236,6 +236,46 @@ public class SearchSteps {
         extentReports.flush();
     }
 
+    @When("I navigate to the next page of search results")
+    public void i_navigate_to_the_next_page_of_search_results() {
+        extentTest = extentReports.createTest("Navigating to the next page of search results");
+        searchResultsPage.navigateToNextPage();
+        extentTest.log(Status.PASS, "Navigated to the next page of search results");
+    }
+
+    @When("I navigate back to the first page of search results")
+    public void i_navigate_back_to_the_first_page_of_search_results() {
+        extentTest = extentReports.createTest("Navigating back to the first page of search results");
+        searchResultsPage.navigateToPage(1);
+        extentTest.log(Status.PASS, "Navigated back to the first page of search results");
+    }
+
+    @Then("I should see search results for {string} on the next page")
+    public void i_should_see_search_results_for_on_the_next_page(String searchTerm) {
+        try {
+            Assert.assertTrue(searchResultsPage.hasResults());
+            extentTest.log(Status.PASS, "Search results displayed for: " + searchTerm + " on the next page");
+        } catch (AssertionError e) {
+            String screenshotPath = ScreenshotUtils.captureScreenshot(driver, "searchResultsNextPageFailure");
+            extentTest.log(Status.FAIL, "Search results not displayed for: " + searchTerm + " on the next page");
+            extentTest.addScreenCaptureFromPath(screenshotPath);
+        }
+        extentReports.flush();
+    }
+
+    @Then("I should see search results for {string} on the first page")
+    public void i_should_see_search_results_for_on_the_first_page(String searchTerm) {
+        try {
+            Assert.assertTrue(searchResultsPage.hasResults());
+            extentTest.log(Status.PASS, "Search results displayed for: " + searchTerm + " on the first page");
+        } catch (AssertionError e) {
+            String screenshotPath = ScreenshotUtils.captureScreenshot(driver, "searchResultsFirstPageFailure");
+            extentTest.log(Status.FAIL, "Search results not displayed for: " + searchTerm + " on the first page");
+            extentTest.addScreenCaptureFromPath(screenshotPath);
+        }
+        extentReports.flush();
+    }
+
     @After
     public void tearDown() {
         if (driver != null) {

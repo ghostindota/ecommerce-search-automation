@@ -40,10 +40,10 @@ public class HomePage extends BasePage {
         return homeLogo.isDisplayed();
     }
 
-    public void selectCategory(String category) {
+     public void selectCategory(String category) {
         WebElement categoryDropdown = getElement(WebElements.CATEGORY_DROPDOWN);
         categoryDropdown.click();
-        WebElement categoryOption = driver.findElement(WebElements.getCategoryOption(category));
+        WebElement categoryOption = driver.findElement(By.xpath("//option[contains(text(), '" + category + "')]"));
         categoryOption.click();
     }
 

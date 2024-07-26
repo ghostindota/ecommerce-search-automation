@@ -15,10 +15,10 @@ public class WebElements {
     public static final By NO_RESULTS_MESSAGE = By.xpath("//span[contains(text(),'No results for')]");
     public static final By SEARCH_SUGGESTIONS = By.cssSelector(".s-suggestion");
     public static final By SEARCH_HISTORY = By.id("search-history");
-    public static final By MIN_PRICE_INPUT = By
-            .xpath("//input[@id='p_36/range-slider_slider-item_lower-bound-slider']");
-    public static final By MAX_PRICE_INPUT = By
-            .xpath("//input[@id='p_36/range-slider_slider-item_upper-bound-slider']");
+    public static final By MIN_PRICE_INPUT = By.xpath(
+            "//input[@id='p_36/range-slider_slider-item_lower-bound-slider']");
+    public static final By MAX_PRICE_INPUT = By.xpath(
+            "//input[@id='p_36/range-slider_slider-item_upper-bound-slider']");
     public static final By PRICE_GO_BUTTON = By.cssSelector(".a-button-input");
     public static final By SORT_DROPDOWN = By.id("s-result-sort-select");
     public static final By PRICE_WHOLE = By.cssSelector(".a-price-whole");
@@ -26,4 +26,11 @@ public class WebElements {
     public static By getCategoryOption(String category) {
         return By.xpath("//option[contains(text(), '" + category + "')]");
     }
+
+    public static By getPageLink(int pageNumber) {
+        return By.xpath("//a[@aria-label='Go to page " + pageNumber + "']");
+    }
+
+    public static final By NEXT_PAGE_LINK = By.xpath(
+            "//a[@class='s-pagination-item s-pagination-next s-pagination-button s-pagination-separator']");
 }

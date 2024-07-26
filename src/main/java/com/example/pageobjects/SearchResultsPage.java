@@ -35,7 +35,7 @@ public class SearchResultsPage extends BasePage {
     // Checks if there are search suggestions displayed
     public boolean hasSearchSuggestions() {
         try {
-            List<WebElement> searchSuggestions = driver.findElements(WebElements.SEARCH_SUGGESTIONS);
+            List<WebElement> searchSuggestions = driver.findElements(WebElements.HISTORY_CONTAINER);
             waitForVisibility(searchSuggestions.get(0));
             return !searchSuggestions.isEmpty();
         } catch (Exception e) {
@@ -52,6 +52,16 @@ public class SearchResultsPage extends BasePage {
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public void navigateToPage(int pageNumber) {
+        WebElement pageLink = getElement(WebElements.getPageLink(pageNumber));
+        pageLink.click();
+    }
+
+    public void navigateToNextPage() {
+        WebElement nextPageLink = getElement(WebElements.NEXT_PAGE_LINK);
+        nextPageLink.click();
     }
 
     // Validates if all search results are within the specified price range

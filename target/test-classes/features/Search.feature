@@ -41,3 +41,14 @@ Feature: Amazon search functionality
   Scenario: Edge case search term
     When I search for a very long search term "assupercalifragilisticexpialidociouadsfaasdfadsfaafdsaf"
     Then I should see no search results for long term
+
+    Scenario: Navigating to the next page of search results
+    When I search for "laptop"
+    And I navigate to the next page of search results
+    Then I should see search results for "laptop" on the next page
+
+  Scenario: Navigating back to the first page of search results from the previous page
+    When I search for "laptop"
+    And I navigate to the next page of search results
+    And I navigate back to the first page of search results
+    Then I should see search results for "laptop" on the first page
